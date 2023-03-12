@@ -1,4 +1,5 @@
 import os
+import shutil
 
 
 class Cleaner:
@@ -14,6 +15,16 @@ class Cleaner:
             return True
         return False
 
+    @staticmethod
+    def delete_object(path: str) -> bool:
+        if os.path.isfile(path):
+            os.remove(path)
+            return True
+        elif os.path.isdir(path):
+            shutil.rmtree(path)
+            return True
+        return False
+
 
 if __name__ == '__main__':
-    print('g' * 5 * 5)
+    pass
