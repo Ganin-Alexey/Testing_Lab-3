@@ -25,6 +25,25 @@ class Cleaner:
             return True
         return False
 
+    @staticmethod
+    def full_delete_dir(dir_name: str) -> bool:
+        """ Рекурсивная очистка и удаления файлов и подкаталогов"""
+
+        def recursive_deletion(dir_name: str):
+            for root, dirs, files in os.walk(dir_name):
+                print(f'Директория - {root}:')
+                for file in files:
+                    print(f'Удаление файла {file}...')
+                    file_path = f'{root}\\{file}'
+                    assert Cleaner.fill_file(path=file_path)
+                    assert Cleaner.delete_object(path=file_path)
+            Cleaner.delete_object(path=f'{dir_name}')
+        if os.path.isdir(dir_name):
+            recursive_deletion(dir_name)
+            return True
+        return False
+
 
 if __name__ == '__main__':
-    pass
+    # Cleaner.fill_file('dir_with_data/file_with_data.txt')
+    Cleaner.full_delete_dir(dir_name='dir_with_data')
