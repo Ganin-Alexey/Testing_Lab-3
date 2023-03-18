@@ -57,6 +57,10 @@ class CleanerTestCase(unittest.TestCase):
         result = self.cleaner.full_delete_dir(dir_name=self.dir_path.format(''))
         self.assertTrue(result)
 
+    def test_full_delete_file(self):
+        result = self.cleaner.full_delete_file(file_name=self.filepath)
+        self.assertTrue(result)
+
 
 if __name__ == '__main__':
     unittest.main()

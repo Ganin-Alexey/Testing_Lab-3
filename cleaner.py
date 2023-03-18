@@ -45,7 +45,18 @@ class Cleaner:
             return True
         return False
 
+    @staticmethod
+    def full_delete_file(file_name: str) -> bool:
+        """ Полное удаление файла """
+
+        if not os.path.isfile(file_name):
+            return False
+        assert Cleaner.fill_file(path=file_name)
+        assert Cleaner.delete_object(path=file_name)
+        return True
+
 
 if __name__ == '__main__':
     # Cleaner.fill_file('dir_with_data/file_with_data.txt')
-    Cleaner.full_delete_dir(dir_name='dir_with_data')
+    # Cleaner.full_delete_dir(dir_name='dir_with_data')
+    Cleaner.full_delete_file(file_name='dir_with_data/file1.txt')
