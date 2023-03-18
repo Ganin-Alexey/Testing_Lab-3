@@ -6,17 +6,19 @@ class Cleaner:
     @staticmethod
     def fill_file(path: str, char: str = 'r', offset: int = 3) -> bool:
         if os.path.isfile(path):
-            with open(file=path, mode='w+', encoding='utf8') as file:
-                for line in file.readlines():
+            with open(file=path, mode='r', encoding='utf8') as file:
+                lines = file.readlines()
+            with open(file=path, mode='w', encoding='utf8') as file:
+                for line in lines:
                     count_of_chars = len(line)
-                    print(char, count_of_chars, offset)
-                    print(char * count_of_chars * offset)
-                    file.write(str(char * count_of_chars * offset))
+                    file.write(str(char * count_of_chars * offset) + '\n')
             return True
         return False
 
     @staticmethod
     def delete_object(path: str) -> bool:
+        """ Удаление файла или директории с файлами """
+
         if os.path.isfile(path):
             os.remove(path)
             return True
